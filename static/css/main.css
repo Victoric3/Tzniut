@@ -1706,3 +1706,434 @@ p {
   clip: rect(0, 0, 0, 0);
   border: 0;
 }
+
+/* ============================================
+   MODERN DESIGN ENHANCEMENTS
+   ============================================ */
+
+/* --- Animated Gradient Text --- */
+.text-gradient-animated {
+  background: linear-gradient(
+    270deg,
+    var(--wine),
+    var(--wine-light),
+    var(--champagne),
+    var(--wine-light),
+    var(--wine)
+  );
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 8s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* --- Animated Section Divider --- */
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--wine-glow),
+    var(--champagne),
+    var(--wine-glow),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: dividerGlow 4s ease-in-out infinite;
+}
+
+@keyframes dividerGlow {
+  0%, 100% { background-position: 0% 50%; opacity: 0.5; }
+  50%      { background-position: 100% 50%; opacity: 1; }
+}
+
+/* --- Enhanced Section Header Line --- */
+.section-header__line {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--wine), var(--champagne), var(--wine), transparent);
+  background-size: 200% 100%;
+  margin: 0 auto;
+  animation: dividerGlow 4s ease-in-out infinite;
+}
+
+/* --- Modern Glow Hover on Glass Cards --- */
+.glass-card {
+  position: relative;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    transparent 30%,
+    var(--wine-glow) 50%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity var(--transition-smooth);
+  z-index: -1;
+}
+
+.glass-card:hover::before {
+  opacity: 1;
+}
+
+/* --- Parallax Background Decorations --- */
+.section--decorated {
+  position: relative;
+}
+
+.section--decorated::before {
+  content: '';
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--wine-glow), transparent 70%);
+  top: -100px;
+  right: -100px;
+  opacity: 0.3;
+  animation: float 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.section--decorated::after {
+  content: '';
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--champagne-glow), transparent 70%);
+  bottom: -80px;
+  left: -80px;
+  opacity: 0.2;
+  animation: float 8s ease-in-out infinite reverse;
+  pointer-events: none;
+}
+
+/* --- Enhanced Product Card with Modern Hover --- */
+.product-card {
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.product-card__image img {
+  transition: transform var(--transition-slow), filter var(--transition-slow);
+}
+
+.product-card:hover .product-card__image img {
+  transform: scale(1.08);
+  filter: brightness(0.85);
+}
+
+/* --- Marquee / Horizontal Scroll Text --- */
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  padding: var(--space-lg) 0;
+  border-top: 1px solid var(--glass-border);
+  border-bottom: 1px solid var(--glass-border);
+  position: relative;
+}
+
+.marquee__inner {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 25s linear infinite;
+}
+
+.marquee__half {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.marquee__item {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 700;
+  color: var(--graphite);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  -webkit-text-stroke: 1px var(--slate);
+  padding: 0 var(--space-xl);
+}
+
+.marquee__item .highlight {
+  color: var(--wine);
+  -webkit-text-stroke: 0;
+}
+
+.marquee__item .sep {
+  color: var(--wine-glow);
+  -webkit-text-stroke: 0;
+  margin: 0 var(--space-md);
+  opacity: 0.4;
+}
+
+@keyframes marqueeScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* --- Staggered Grid Reveal --- */
+.grid .product-card:nth-child(1) { transition-delay: 0s; }
+.grid .product-card:nth-child(2) { transition-delay: 0.1s; }
+.grid .product-card:nth-child(3) { transition-delay: 0.2s; }
+.grid .product-card:nth-child(4) { transition-delay: 0.3s; }
+.grid .product-card:nth-child(5) { transition-delay: 0.4s; }
+.grid .product-card:nth-child(6) { transition-delay: 0.5s; }
+
+/* --- Modern Button Shine Effect --- */
+.btn--primary::after,
+.btn--champagne::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.15) 50%,
+    transparent 70%
+  );
+  transition: left 0.6s ease;
+}
+
+.btn--primary:hover::after,
+.btn--champagne:hover::after {
+  left: 100%;
+}
+
+/* --- Enhanced Nav with Blur Transition --- */
+.nav {
+  transition: background 0.5s ease, backdrop-filter 0.5s ease, box-shadow 0.5s ease;
+}
+
+.nav.scrolled {
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* --- Animated Hamburger Enhancement --- */
+.nav__hamburger span {
+  transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+              opacity 0.3s ease;
+}
+
+/* --- Modern Scroll Indicator --- */
+.hero__scroll-indicator span {
+  position: relative;
+}
+
+.hero__scroll-indicator span::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--champagne);
+  animation: scrollDot 2s ease-in-out infinite;
+}
+
+@keyframes scrollDot {
+  0%   { bottom: 100%; opacity: 0; }
+  30%  { opacity: 1; }
+  100% { bottom: 0; opacity: 0; }
+}
+
+/* --- Animated Background Grain (subtle texture) --- */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.015;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* --- Enhanced Value Card Icons --- */
+.value-card__icon {
+  font-size: 2.5rem;
+  margin-bottom: var(--space-md);
+  background: linear-gradient(135deg, var(--wine), var(--champagne));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: transform var(--transition-smooth);
+}
+
+.value-card:hover .value-card__icon {
+  transform: scale(1.15) rotate(5deg);
+}
+
+/* --- Enhanced Testimonial Card --- */
+.testimonial-card {
+  transition: all var(--transition-smooth);
+}
+
+.testimonial-card__quote {
+  position: relative;
+}
+
+.testimonial-card__quote::after {
+  content: '\201D';
+  font-family: var(--font-display);
+  font-size: 4rem;
+  color: var(--wine);
+  display: block;
+  line-height: 0.5;
+  margin-top: var(--space-md);
+  opacity: 0.5;
+}
+
+/* --- Smooth Image Load --- */
+img {
+  opacity: 1;
+  transition: opacity var(--transition-smooth);
+}
+
+img[loading="lazy"] {
+  opacity: 0;
+}
+
+img[loading="lazy"].loaded,
+img[loading="lazy"][complete] {
+  opacity: 1;
+}
+
+/* --- Modern Footer Social Hover --- */
+.footer__social a {
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.footer__social a:hover {
+  transform: translateY(-4px) scale(1.1);
+  border-color: var(--wine);
+  color: var(--champagne);
+  background: rgba(114, 47, 55, 0.15);
+  box-shadow: 0 8px 20px rgba(114, 47, 55, 0.2);
+}
+
+/* --- Enhanced About Hero with Animated Orbs --- */
+.about-hero::after {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--champagne-glow), transparent 70%);
+  top: 20%;
+  right: -10%;
+  opacity: 0.3;
+  animation: float 10s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* --- Cursor Glow Effect Container --- */
+.cursor-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.cursor-glow::after {
+  content: '';
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--wine-glow), transparent 70%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  transform: translate(-50%, -50%);
+}
+
+.cursor-glow:hover::after {
+  opacity: 0.5;
+}
+
+/* --- Modern Loading Skeleton --- */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--graphite) 25%,
+    var(--charcoal) 50%,
+    var(--graphite) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: var(--radius-md);
+}
+
+/* --- Smooth Page Transitions --- */
+main {
+  animation: pageEnter 0.6s var(--ease-luxury);
+}
+
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Enhanced Blog Card --- */
+.blog-card {
+  border: 1px solid transparent;
+}
+
+.blog-card:hover {
+  border-color: var(--glass-border);
+}
+
+/* --- Modern Filter Tab Active State --- */
+.filter-tab.active {
+  background: linear-gradient(135deg, rgba(114, 47, 55, 0.2), rgba(114, 47, 55, 0.1));
+  box-shadow: 0 0 20px rgba(114, 47, 55, 0.15);
+}
+
+/* --- Responsive Modern Enhancements --- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .marquee__inner {
+    animation: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .marquee__item {
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+  }
+
+  .section--decorated::before,
+  .section--decorated::after {
+    display: none;
+  }
+}

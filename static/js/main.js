@@ -9,6 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
   initLightbox();
   initTestimonialCarousel();
   initChatUI();
+  initParallax();
+  initLazyImageReveal();
+  initMagneticButtons();
+  initSmoothCounters();
 });
 
 /* --- Scroll Reveal (Intersection Observer) --- */
@@ -231,5 +235,93 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       e.preventDefault();
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+  });
+});
+
+/* --- Parallax Effect on Hero Background --- */
+function initParallax() {
+  const heroImg = document.querySelector('.hero__bg img');
+  if (!heroImg) return;
+
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const scrolled = window.pageYOffset;
+        const rate = scrolled * 0.3;
+        heroImg.style.transform = `scale(1.05) translateY(${rate}px)`;
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+}
+
+/* --- Lazy Image Reveal on Load --- */
+function initLazyImageReveal() {
+  document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+    if (img.complete) {
+      img.classList.add('loaded');
+    } else {
+      img.addEventListener('load', () => img.classList.add('loaded'));
+      img.addEventListener('error', () => img.classList.add('loaded'));
+    }
+  });
+}
+
+/* --- Magnetic Button Effect --- */
+function initMagneticButtons() {
+  if (window.matchMedia('(pointer: coarse)').matches) return;
+
+  document.querySelectorAll('.btn--primary, .btn--champagne').forEach(btn => {
+    btn.addEventListener('mousemove', (e) => {
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+    });
+
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transform = '';
+    });
+  });
+}
+
+/* --- Smooth Counter Animation --- */
+function initSmoothCounters() {
+  const counters = document.querySelectorAll('[data-count]');
+  if (!counters.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const target = parseInt(el.dataset.count, 10);
+        const suffix = el.dataset.suffix || '';
+        const duration = 2000;
+        const start = performance.now();
+
+        function update(now) {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.floor(target * eased) + suffix;
+          if (progress < 1) requestAnimationFrame(update);
+        }
+
+        requestAnimationFrame(update);
+        observer.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  counters.forEach(el => observer.observe(el));
+}
+
+/* --- Cursor Glow Tracking --- */
+document.querySelectorAll('.cursor-glow').forEach(el => {
+  el.addEventListener('mousemove', (e) => {
+    const rect = el.getBoundingClientRect();
+    el.style.setProperty('--glow-x', `${e.clientX - rect.left}px`);
+    el.style.setProperty('--glow-y', `${e.clientY - rect.top}px`);
   });
 });

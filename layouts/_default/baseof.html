@@ -1,9 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#722F37">
+
+  <!-- Enable JS-dependent styles only when JS is available -->
+  <script>document.documentElement.classList.replace('no-js','js-enabled');</script>
+
+  <!-- No-JS fallback: make reveals visible if JavaScript fails -->
+  <noscript>
+    <style>
+      .reveal, .reveal-left, .reveal-right, .reveal-scale { opacity: 1 !important; transform: none !important; }
+      img[loading="lazy"] { opacity: 1 !important; }
+    </style>
+  </noscript>
 
   {{- partial "head-seo.html" . -}}
 

@@ -1,0 +1,25 @@
+<nav class="nav" id="main-nav" role="navigation" aria-label="Main navigation">
+  <div class="nav__inner">
+    <a href="/" class="nav__logo" aria-label="Tzniut Home">Tzniut</a>
+
+    <div class="nav__links" role="menubar">
+      {{ range .Site.Menus.main }}
+      <a href="{{ .URL }}" class="nav__link{{ if $.IsMenuCurrent "main" . }} active{{ end }}" role="menuitem">
+        {{ .Name }}
+      </a>
+      {{ end }}
+    </div>
+
+    <button class="nav__hamburger" id="nav-hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <div class="nav__mobile-overlay" id="nav-mobile-overlay">
+    {{ range .Site.Menus.main }}
+    <a href="{{ .URL }}" class="nav__link" role="menuitem">{{ .Name }}</a>
+    {{ end }}
+  </div>
+</nav>

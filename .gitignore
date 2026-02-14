@@ -1,0 +1,15 @@
+# Hugo build output
+public/
+
+# Hugo build lock
+.hugo_build.lock
+
+# Hugo stats (auto-generated)
+hugo_stats.json
+
+# Claude settings
+.claude/
+
+# OS files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,90 @@
+{{ define "main" }}
+
+<article class="blog-single">
+  <!-- Hero Image -->
+  {{ with .Params.featured_image }}
+  <div class="blog-single__hero-image reveal">
+    <img src="{{ . }}" alt="{{ $.Title }}" loading="eager">
+  </div>
+  {{ end }}
+
+  <!-- Meta -->
+  <div class="blog-single__meta">
+    <span>{{ .Date.Format "January 2, 2006" }}</span>
+    <span>·</span>
+    <span>{{ .Params.author | default "Tzniut" }}</span>
+    {{ with .Params.categories }}
+    <span>·</span>
+    <span style="color: var(--champagne);">{{ index . 0 }}</span>
+    {{ end }}
+  </div>
+
+  <!-- Title -->
+  <h1 style="font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); margin-bottom: var(--space-xl);">{{ .Title }}</h1>
+
+  <!-- Content -->
+  <div class="blog-single__content">
+    {{ .Content }}
+  </div>
+
+  <!-- Tags -->
+  {{ with .Params.tags }}
+  <div style="margin-top: var(--space-2xl); padding-top: var(--space-lg); border-top: 1px solid var(--glass-border);">
+    <div style="display: flex; flex-wrap: wrap; gap: var(--space-sm);">
+      {{ range . }}
+      <span style="padding: 4px 16px; border: 1px solid var(--glass-border); border-radius: 20px; font-size: 0.8rem; color: var(--slate);">{{ . }}</span>
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
+
+  <!-- Author Section -->
+  <div class="glass-card" style="margin-top: var(--space-2xl); display: flex; align-items: center; gap: var(--space-lg);">
+    <div style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, var(--wine), var(--wine-light)); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 1.5rem; flex-shrink: 0;">
+      {{ substr (.Params.author | default "T") 0 1 }}
+    </div>
+    <div>
+      <h4 style="margin-bottom: var(--space-xs);">{{ .Params.author | default "Tzniut" }}</h4>
+      <p style="font-size: 0.85rem; margin: 0;">Fashion designer, storyteller, and co-founder of Tzniut. Writing about modest fashion, design, and the art of taking the spotlight.</p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="text-center" style="margin-top: var(--space-2xl); padding: var(--space-2xl); background: var(--charcoal); border-radius: var(--radius-lg);">
+    <h3 style="margin-bottom: var(--space-sm);">Inspired to find your piece?</h3>
+    <p style="margin-bottom: var(--space-lg); font-size: 0.95rem;">Explore our collections or chat with us for personal styling advice.</p>
+    <div style="display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap;">
+      <a href="/collections/" class="btn btn--primary">Explore Collections</a>
+      <a href="{{ .Site.Params.whatsappLink }}" class="btn btn--whatsapp" target="_blank" rel="noopener">Chat on WhatsApp</a>
+    </div>
+  </div>
+</article>
+
+<!-- Related Posts -->
+{{ $related := where (where .Site.RegularPages "Section" "blog") "Permalink" "ne" .Permalink | first 3 }}
+{{ if $related }}
+<section class="section" style="background: var(--charcoal);">
+  <div class="container container--narrow">
+    <div class="section-header reveal">
+      <span class="section-header__label">Keep Reading</span>
+      <h2 class="section-header__title">More from the Journal</h2>
+      <div class="section-header__line"></div>
+    </div>
+    <div class="grid grid-3" style="max-width: 100%;">
+      {{ range $related }}
+      <a href="{{ .Permalink }}" class="blog-card reveal">
+        <div class="blog-card__image">
+          <img src="{{ .Params.featured_image }}" alt="{{ .Title }}" loading="lazy">
+        </div>
+        <div class="blog-card__content">
+          <h4 class="blog-card__title" style="font-size: 1.1rem;">{{ .Title }}</h4>
+          <span class="blog-card__meta">{{ .Date.Format "January 2, 2006" }}</span>
+        </div>
+      </a>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{ end }}

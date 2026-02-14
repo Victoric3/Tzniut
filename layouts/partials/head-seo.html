@@ -1,0 +1,128 @@
+{{- $title := .Title | default .Site.Title -}}
+{{- $desc := .Params.description | default .Site.Params.description -}}
+{{- $ogImage := .Params.ogImage | default .Site.Params.ogImage -}}
+{{- $canonicalURL := .Permalink -}}
+
+<title>{{ if not .IsHome }}{{ $title }} — {{ end }}{{ .Site.Title }}</title>
+<meta name="description" content="{{ $desc }}">
+<link rel="canonical" href="{{ $canonicalURL }}">
+
+<!-- Open Graph -->
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:description" content="{{ $desc }}">
+<meta property="og:url" content="{{ $canonicalURL }}">
+<meta property="og:site_name" content="{{ .Site.Title }}">
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+{{ with $ogImage }}<meta property="og:image" content="{{ . | absURL }}">{{ end }}
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ $title }}">
+<meta name="twitter:description" content="{{ $desc }}">
+{{ with $ogImage }}<meta name="twitter:image" content="{{ . | absURL }}">{{ end }}
+
+<!-- JSON-LD: Organization -->
+{{ if .IsHome }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Tzniut",
+  "description": "{{ .Site.Params.description }}",
+  "url": "{{ .Site.BaseURL }}",
+  "logo": "{{ .Site.BaseURL }}images/logo.png",
+  "sameAs": [
+    "{{ .Site.Params.social.instagram }}",
+    "{{ .Site.Params.social.facebook }}",
+    "{{ .Site.Params.social.tiktok }}"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer service",
+    "url": "{{ .Site.Params.whatsappLink }}"
+  }
+}
+</script>
+{{ end }}
+
+<!-- JSON-LD: Product -->
+{{ if and (.IsPage) (eq .Section "collections") }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "{{ .Title }}",
+  "description": "{{ $desc }}",
+  "image": {{ with .Params.images }}{{ index . 0 }}{{ end }},
+  "brand": {
+    "@type": "Brand",
+    "name": "Tzniut"
+  },
+  "offers": {
+    "@type": "Offer",
+    "availability": "https://schema.org/InStock",
+    "url": "{{ .Permalink }}"
+  }
+}
+</script>
+{{ end }}
+
+<!-- JSON-LD: BlogPosting -->
+{{ if and (.IsPage) (eq .Section "blog") }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{{ .Title }}",
+  "description": "{{ $desc }}",
+  "datePublished": "{{ .Date.Format "2006-01-02" }}",
+  "dateModified": "{{ .Lastmod.Format "2006-01-02" }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ .Params.author | default "Tzniut" }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Tzniut"
+  },
+  "mainEntityOfPage": "{{ .Permalink }}"
+}
+</script>
+{{ end }}
+
+<!-- Breadcrumbs -->
+{{ if not .IsHome }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ .Site.BaseURL }}"
+    }{{ if .Parent }},
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ .Parent.Title }}",
+      "item": "{{ .Parent.Permalink }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{ .Title }}",
+      "item": "{{ .Permalink }}"
+    }{{ else }},
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ .Title }}",
+      "item": "{{ .Permalink }}"
+    }{{ end }}
+  ]
+}
+</script>
+{{ end }}

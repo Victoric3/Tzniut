@@ -1,0 +1,51 @@
+{{ define "main" }}
+
+<section class="section" style="padding-top: calc(var(--nav-height) + var(--space-2xl));">
+  <div class="container container--wide">
+    <div class="section-header reveal">
+      <span class="section-header__label">Insights &amp; Stories</span>
+      <h1 class="section-header__title">The Tzniut Journal</h1>
+      <div class="section-header__line"></div>
+      <p style="max-width: 550px; margin: var(--space-lg) auto 0;">Fashion insights, styling guides, and behind-the-scenes stories from the world of elegant modest fashion.</p>
+    </div>
+
+    <!-- Featured Post -->
+    {{ with index (where .Pages "Params.draft" false) 0 }}
+    <a href="{{ .Permalink }}" class="blog-card reveal" style="display: grid; grid-template-columns: 1fr 1fr; margin-bottom: var(--space-2xl); max-width: 1000px; margin-left: auto; margin-right: auto;">
+      <div class="blog-card__image" style="aspect-ratio: 16/9;">
+        <img src="{{ .Params.featured_image }}" alt="{{ .Title }}" loading="eager">
+      </div>
+      <div class="blog-card__content" style="display: flex; flex-direction: column; justify-content: center; padding: var(--space-2xl);">
+        <span class="blog-card__tag">Featured</span>
+        <h2 class="blog-card__title" style="font-size: 1.6rem;">{{ .Title }}</h2>
+        <p class="blog-card__excerpt">{{ .Description }}</p>
+        <span class="blog-card__meta">{{ .Date.Format "January 2, 2006" }} · {{ .Params.author }}</span>
+      </div>
+    </a>
+    {{ end }}
+
+    <!-- Blog Grid -->
+    <div class="grid grid-3">
+      {{ range after 1 (where .Pages "Params.draft" false) }}
+      <a href="{{ .Permalink }}" class="blog-card reveal">
+        <div class="blog-card__image">
+          <img src="{{ .Params.featured_image }}" alt="{{ .Title }}" loading="lazy">
+        </div>
+        <div class="blog-card__content">
+          {{ with .Params.categories }}
+          <span class="blog-card__tag">{{ index . 0 }}</span>
+          {{ end }}
+          <h3 class="blog-card__title">{{ .Title }}</h3>
+          <p class="blog-card__excerpt">{{ .Description }}</p>
+          <span class="blog-card__meta">{{ .Date.Format "January 2, 2006" }}</span>
+        </div>
+      </a>
+      {{ end }}
+    </div>
+
+    <!-- Pagination -->
+    {{ template "_internal/pagination.html" . }}
+  </div>
+</section>
+
+{{ end }}

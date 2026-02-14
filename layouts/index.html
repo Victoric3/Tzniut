@@ -1,0 +1,149 @@
+{{ define "main" }}
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero__bg">
+    <img src="{{ .Params.heroImage }}" alt="Tzniut Fashion — Elegant Conservative Dresses" loading="eager">
+  </div>
+  <div class="hero__content">
+    <span class="hero__tagline">{{ .Params.heroTagline }}</span>
+    <h1 class="hero__title">{{ .Params.heroTitle }}</h1>
+    <p class="hero__subtitle">{{ .Params.heroSubtitle }}</p>
+    <div class="hero__cta">
+      <a href="/collections/" class="btn btn--primary">Explore Collections</a>
+      <a href="{{ .Site.Params.whatsappLink }}" class="btn btn--outline" target="_blank" rel="noopener">Chat With Us</a>
+    </div>
+  </div>
+  <div class="hero__scroll-indicator" aria-hidden="true">
+    <span></span>
+  </div>
+</section>
+
+<!-- Brand Statement -->
+<section class="section">
+  <div class="container container--narrow text-center">
+    <div class="reveal">
+      <span class="section-header__label">Our Philosophy</span>
+      <h2 class="section-header__title">Fashion That <span class="text-gradient">Honours</span> You</h2>
+      <div class="section-header__line mb-lg"></div>
+      <p style="font-size: 1.1rem; line-height: 2;">
+        At Tzniut, we believe that true elegance lies in the art of refined modesty. Every piece in our collection is crafted to empower you — because covering up has never meant dimming your light. Our designs celebrate the woman who commands attention through grace, not exposure.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Collections -->
+<section class="section" style="background: var(--charcoal);">
+  <div class="container container--wide">
+    <div class="section-header reveal">
+      <span class="section-header__label">Curated for You</span>
+      <h2 class="section-header__title">Our Collections</h2>
+      <div class="section-header__line"></div>
+    </div>
+
+    <div class="grid grid-3">
+      {{ range $index, $cat := (where .Site.RegularPages "Section" "collections") | first 6 }}
+      <a href="{{ .Permalink }}" class="product-card reveal reveal-delay-{{ add $index 1 }}">
+        <div class="product-card__image">
+          <img src="{{ with .Params.images }}{{ index . 0 }}{{ end }}" alt="{{ .Title }}" loading="lazy">
+        </div>
+        <div class="product-card__overlay">
+          <span class="product-card__category">{{ .Params.category }}</span>
+          <h3 class="product-card__title">{{ .Title }}</h3>
+          <p class="product-card__desc">{{ .Description }}</p>
+          <span class="product-card__cta btn btn--outline" style="align-self: flex-start; padding: 10px 24px; font-size: 0.75rem;">View Details</span>
+        </div>
+      </a>
+      {{ end }}
+    </div>
+
+    <div class="text-center mt-2xl reveal">
+      <a href="/collections/" class="btn btn--primary">View All Collections</a>
+    </div>
+  </div>
+</section>
+
+<!-- Video Showcase -->
+<section class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-header__label">Behind the Seams</span>
+      <h2 class="section-header__title">See It In Motion</h2>
+      <div class="section-header__line"></div>
+    </div>
+    <div class="video-showcase reveal-scale" style="max-width: 900px; margin: 0 auto;">
+      <iframe 
+        src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+        title="Tzniut Fashion Showcase" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen
+        loading="lazy">
+      </iframe>
+    </div>
+    <p class="text-center mt-xl reveal" style="font-family: var(--font-accent); font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--slate);">
+      Watch our latest collection come to life
+    </p>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="section" style="background: linear-gradient(135deg, var(--charcoal), var(--black));">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-header__label">What They Say</span>
+      <h2 class="section-header__title">Client Stories</h2>
+      <div class="section-header__line"></div>
+    </div>
+
+    <div class="testimonial-carousel reveal">
+      <div class="testimonial-track">
+        <div class="testimonial-slide">
+          <div class="testimonial-card glass-card">
+            <p class="testimonial-card__quote">Tzniut redefined what modest fashion means to me. Every dress makes me feel like I'm wearing a work of art. The attention to detail is extraordinary.</p>
+            <span class="testimonial-card__author">— Amara J., Lagos</span>
+          </div>
+        </div>
+        <div class="testimonial-slide">
+          <div class="testimonial-card glass-card">
+            <p class="testimonial-card__quote">I've never felt more beautiful and confident. Tzniut proves you don't have to show skin to steal the show. Absolutely stunning craftsmanship.</p>
+            <span class="testimonial-card__author">— Fatimah K., Dubai</span>
+          </div>
+        </div>
+        <div class="testimonial-slide">
+          <div class="testimonial-card glass-card">
+            <p class="testimonial-card__quote">From the fabric quality to the personal styling advice via WhatsApp, the entire Tzniut experience is luxury from start to finish.</p>
+            <span class="testimonial-card__author">— Grace O., London</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-dots">
+        <button class="testimonial-dot active" aria-label="Testimonial 1"></button>
+        <button class="testimonial-dot" aria-label="Testimonial 2"></button>
+        <button class="testimonial-dot" aria-label="Testimonial 3"></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="section">
+  <div class="container text-center">
+    <div class="reveal">
+      <span class="section-header__label">Ready?</span>
+      <h2 class="section-header__title" style="margin-bottom: var(--space-md);">Find Your Perfect <span class="text-gradient">Dress</span></h2>
+      <p style="max-width: 500px; margin: 0 auto var(--space-xl); font-size: 1.05rem;">
+        Every Tzniut piece is a conversation between you and the fabric. Let us help you find the one that speaks your language.
+      </p>
+      <div style="display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap;">
+        <a href="{{ .Site.Params.whatsappLink }}" class="btn btn--whatsapp" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Chat on WhatsApp
+        </a>
+        <a href="/contact/" class="btn btn--outline">Find Your Dress</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ end }}

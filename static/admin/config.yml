@@ -1,6 +1,9 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: Victoric3/Tzniut
   branch: master
+  base_url: https://api.netlify.com
+  auth_endpoint: /auth/done
 
 media_folder: "static/images/uploads"
 public_folder: "/images/uploads"

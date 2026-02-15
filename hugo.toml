@@ -1,7 +1,6 @@
 baseURL = "/"
 languageCode = "en-us"
 title = "Tzniut — Take the Spotlight"
-theme = ""
 enableRobotsTXT = true
 enableEmoji = true
 

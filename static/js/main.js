@@ -86,7 +86,8 @@ function initLightbox() {
 
   document.querySelectorAll('[data-lightbox]').forEach(trigger => {
     trigger.addEventListener('click', () => {
-      const src = trigger.getAttribute('data-lightbox') || trigger.src || trigger.querySelector('img')?.src;
+      const img = trigger.querySelector('img');
+      const src = trigger.getAttribute('data-lightbox') || trigger.src || (img && img.src);
       if (src) {
         lightboxImg.src = src;
         lightboxImg.alt = trigger.alt || 'Image preview';
@@ -190,7 +191,8 @@ function initChatUI() {
 
       // Also add a simpler direct link
       const directBtn = document.createElement('a');
-      directBtn.href = document.querySelector('.whatsapp-float__btn')?.href || 'https://wa.link/qjvggk';
+      const whatsappFloatBtn = document.querySelector('.whatsapp-float__btn');
+      directBtn.href = (whatsappFloatBtn && whatsappFloatBtn.href) || 'https://wa.link/qjvggk';
       directBtn.target = '_blank';
       directBtn.rel = 'noopener';
       directBtn.className = 'btn btn--outline';

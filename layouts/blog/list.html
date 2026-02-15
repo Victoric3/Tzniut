@@ -11,13 +11,13 @@
 
     <!-- Featured Post -->
     {{ with index (where .Pages "Params.draft" false) 0 }}
-    <a href="{{ .Permalink }}" class="blog-card reveal" style="display: grid; grid-template-columns: 1fr 1fr; margin-bottom: var(--space-2xl); max-width: 1000px; margin-left: auto; margin-right: auto;">
-      <div class="blog-card__image" style="aspect-ratio: 16/9;">
+    <a href="{{ .Permalink }}" class="blog-card blog-card--featured reveal">
+      <div class="blog-card__image">
         <img src="{{ .Params.featured_image }}" alt="{{ .Title }}" loading="eager">
       </div>
-      <div class="blog-card__content" style="display: flex; flex-direction: column; justify-content: center; padding: var(--space-2xl);">
+      <div class="blog-card__content">
         <span class="blog-card__tag">Featured</span>
-        <h2 class="blog-card__title" style="font-size: 1.6rem;">{{ .Title }}</h2>
+        <h2 class="blog-card__title">{{ .Title }}</h2>
         <p class="blog-card__excerpt">{{ .Description }}</p>
         <span class="blog-card__meta">{{ .Date.Format "January 2, 2006" }} · {{ .Params.author }}</span>
       </div>

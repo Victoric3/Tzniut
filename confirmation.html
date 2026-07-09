@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#722F37">
+  <title>Payment Confirmed — Tzniut</title>
+  <meta name="description" content="Your payment was successful. Thank you for your order.">
+
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <script>document.documentElement.classList.replace('no-js','js-enabled');</script>
+  <noscript>
+    <style>
+      .reveal, .reveal-left, .reveal-right, .reveal-scale { opacity: 1 !important; transform: none !important; }
+    </style>
+  </noscript>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/main.css?v=20260215">
+  <style>
+    .confirm-section { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding-top: var(--nav-height); }
+    .confirm-card {
+      background: var(--charcoal);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-2xl);
+      max-width: 520px;
+      width: 100%;
+      text-align: center;
+    }
+    .confirm-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: rgba(212, 175, 55, 0.1);
+      border: 2px solid var(--champagne);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--space-lg);
+    }
+    .confirm-icon svg { width: 36px; height: 36px; color: var(--champagne); }
+    .confirm-card__title {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      margin-bottom: var(--space-sm);
+    }
+    .confirm-card__sub {
+      color: var(--ivory-dim);
+      font-size: 0.95rem;
+      margin-bottom: var(--space-xl);
+      line-height: 1.6;
+    }
+    .confirm-details {
+      background: var(--graphite);
+      border-radius: var(--radius-sm);
+      padding: var(--space-lg);
+      margin-bottom: var(--space-xl);
+      text-align: left;
+    }
+    .confirm-details-row {
+      display: flex;
+      justify-content: space-between;
+      padding: var(--space-xs) 0;
+      font-size: 0.9rem;
+    }
+    .confirm-details-row .label { color: var(--slate); }
+    .confirm-details-row .value { color: var(--ivory); font-weight: 500; }
+    .confirm-actions { display: flex; flex-direction: column; gap: var(--space-sm); }
+    .confirm-actions .btn { width: 100%; }
+    .confirm-unverified {
+      background: rgba(255, 193, 7, 0.1);
+      border: 1px solid rgba(255, 193, 7, 0.3);
+      color: #ffc107;
+      padding: var(--space-md);
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      margin-bottom: var(--space-lg);
+    }
+    .confirm-loader {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      color: var(--ivory-dim);
+      margin-bottom: var(--space-lg);
+    }
+    .spinner {
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--glass-border);
+      border-top-color: var(--champagne);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @media (max-width: 520px) {
+      .confirm-card { padding: var(--space-lg); }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav" id="main-nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="Tzniut Home">
+        <img src="images/logo.png" alt="Tzniut" class="nav__logo-img">
+      </a>
+      <div class="nav__links" role="menubar">
+        <a href="collections/index.html" class="nav__link" role="menuitem">Collections</a>
+        <a href="blog/index.html" class="nav__link" role="menuitem">Blog</a>
+        <a href="about.html" class="nav__link" role="menuitem">About</a>
+        <a href="contact.html" class="nav__link" role="menuitem">Contact</a>
+      </div>
+      <button class="nav__hamburger" id="nav-hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav__mobile-overlay" id="nav-mobile-overlay">
+      <a href="collections/index.html" class="nav__link" role="menuitem">Collections</a>
+      <a href="blog/index.html" class="nav__link" role="menuitem">Blog</a>
+      <a href="about.html" class="nav__link" role="menuitem">About</a>
+      <a href="contact.html" class="nav__link" role="menuitem">Contact</a>
+    </div>
+  </nav>
+
+  <main id="main-content">
+    <section class="confirm-section">
+      <div class="container container--narrow">
+        <div class="confirm-card reveal" id="confirm-card">
+          <div id="confirm-content">
+            <div class="confirm-loader" id="confirm-loader">
+              <div class="spinner"></div>
+              <span>Verifying your payment...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container container--wide">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand-name text-gradient">Tzniut</div>
+          <div class="footer__brand-tagline">Take the Spotlight</div>
+          <p class="footer__desc">Where modesty meets magnificence. Elegant, conservative fashion designed for the modern woman.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+            <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385h-3.047v-3.47h3.047v-2.642c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953h-1.514c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385c5.737-.9 10.126-5.864 10.126-11.854z"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__heading">Explore</h4>
+          <a href="collections/index.html" class="footer__link">Collections</a>
+          <a href="blog/index.html" class="footer__link">Blog</a>
+          <a href="about.html" class="footer__link">About</a>
+          <a href="contact.html" class="footer__link">Contact</a>
+        </div>
+        <div>
+          <h4 class="footer__heading">Connect</h4>
+          <a href="https://wa.link/qjvggk" class="footer__link" target="_blank">WhatsApp</a>
+          <div style="margin-top: var(--space-lg);">
+            <img src="images/tzniut-qr.png" alt="Scan to chat on WhatsApp" class="footer__qr">
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__heading">Stay in Touch</h4>
+          <form name="newsletter" method="POST" class="footer__newsletter">
+            <div class="footer__newsletter-form">
+              <input type="email" name="email" placeholder="Your email address" required>
+              <button type="submit">Join</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2026 Tzniut. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="whatsapp-float">
+    <a href="https://wa.link/qjvggk" class="whatsapp-float__btn" target="_blank" aria-label="Chat on WhatsApp">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+    <span class="whatsapp-float__tooltip">Chat with us</span>
+  </div>
+
+  <script src="js/main.js" defer></script>
+  <script>
+    (function() {
+      var PAYSTACK_KEY = 'pk_test_cc1281997da0f7fcd76858589eef6df4be235ff1';
+      var VERIFY_URL = '/.netlify/functions/verify-payment';
+
+      var params = new URLSearchParams(window.location.search);
+      var reference = params.get('reference');
+      var email = params.get('email') || '';
+      var amount = params.get('amount') || '';
+      var paidAt = params.get('paid_at') || '';
+      var whatsapp = params.get('whatsapp') || '';
+      var unverified = params.get('unverified') === '1';
+
+      var content = document.getElementById('confirm-content');
+
+      function showSuccess(data) {
+        var ref = data.reference || reference;
+        var amt = data.amount || amount;
+        var eml = data.email || email;
+        var paid = data.paid_at || paidAt;
+        var wa = whatsapp;
+
+        var dateStr = '';
+        if (paid) {
+          var d = new Date(paid);
+          dateStr = d.toLocaleDateString('en-NG', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+        }
+
+        content.innerHTML =
+          '<div class="confirm-icon">' +
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+              '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>' +
+              '<polyline points="22 4 12 14.01 9 11.01"/>' +
+            '</svg>' +
+          '</div>' +
+          '<h1 class="confirm-card__title">Payment Confirmed</h1>' +
+          '<p class="confirm-card__sub">Thank you! Your payment has been processed successfully. You will receive a receipt at your email.</p>' +
+          '<div class="confirm-details">' +
+            (ref ? '<div class="confirm-details-row"><span class="label">Reference</span><span class="value">' + ref + '</span></div>' : '') +
+            (eml ? '<div class="confirm-details-row"><span class="label">Email</span><span class="value">' + eml + '</span></div>' : '') +
+            (wa ? '<div class="confirm-details-row"><span class="label">WhatsApp</span><span class="value">' + wa + '</span></div>' : '') +
+            (amt ? '<div class="confirm-details-row"><span class="label">Amount</span><span class="value">₦' + Number(amt).toLocaleString() + '</span></div>' : '') +
+            (dateStr ? '<div class="confirm-details-row"><span class="label">Date</span><span class="value">' + dateStr + '</span></div>' : '') +
+          '</div>' +
+          '<div class="confirm-actions">' +
+            '<a href="collections/index.html" class="btn btn--primary">Continue Shopping</a>' +
+            '<a href="index.html" class="btn btn--outline">Back to Home</a>' +
+          '</div>';
+      }
+
+      function showError() {
+        content.innerHTML =
+          '<div class="confirm-icon" style="border-color: #ff6b6b;">' +
+            '<svg viewBox="0 0 24 24" fill="none" stroke="#ff6b6b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+              '<circle cx="12" cy="12" r="10"/>' +
+              '<line x1="15" y1="9" x2="9" y2="15"/>' +
+              '<line x1="9" y1="9" x2="15" y2="15"/>' +
+            '</svg>' +
+          '</div>' +
+          '<h1 class="confirm-card__title">Verification Failed</h1>' +
+          '<p class="confirm-card__sub">We could not verify your payment. Please contact us with your transaction reference.</p>' +
+          (reference ? '<div class="confirm-details"><div class="confirm-details-row"><span class="label">Reference</span><span class="value">' + reference + '</span></div></div>' : '') +
+          '<div class="confirm-actions">' +
+            '<a href="https://wa.link/qjvggk" class="btn btn--whatsapp" target="_blank">Contact Us on WhatsApp</a>' +
+            '<a href="pay.html" class="btn btn--outline">Try Again</a>' +
+          '</div>';
+      }
+
+      if (!reference) {
+        showError();
+        return;
+      }
+
+      if (unverified) {
+        // Show what we have but warn
+        content.innerHTML =
+          '<div class="confirm-icon">' +
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+              '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>' +
+              '<polyline points="22 4 12 14.01 9 11.01"/>' +
+            '</svg>' +
+          '</div>' +
+          '<h1 class="confirm-card__title">Payment Submitted</h1>' +
+          '<p class="confirm-card__sub">Your payment was received. We are verifying it on our end. Save your reference below.</p>' +
+          '<div class="confirm-details">' +
+            '<div class="confirm-details-row"><span class="label">Reference</span><span class="value">' + reference + '</span></div>' +
+            (email ? '<div class="confirm-details-row"><span class="label">Email</span><span class="value">' + email + '</span></div>' : '') +
+            (whatsapp ? '<div class="confirm-details-row"><span class="label">WhatsApp</span><span class="value">' + whatsapp + '</span></div>' : '') +
+            (amount ? '<div class="confirm-details-row"><span class="label">Amount</span><span class="value">₦' + Number(amount).toLocaleString() + '</span></div>' : '') +
+          '</div>' +
+          '<div class="confirm-unverified">⚠ Payment is pending verification. We will confirm manually and reach out.</div>' +
+          '<div class="confirm-actions">' +
+            '<a href="collections/index.html" class="btn btn--primary">Continue Shopping</a>' +
+            '<a href="https://wa.link/qjvggk" class="btn btn--whatsapp" target="_blank">Contact Us</a>' +
+          '</div>';
+        return;
+      }
+
+      // Try to verify server-side
+      fetch(VERIFY_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ reference: reference })
+      })
+      .then(function(r) { return r.json(); })
+      .then(function(result) {
+        if (result.verified) {
+          showSuccess(result);
+        } else {
+          showError();
+        }
+      })
+      .catch(function() {
+        // Fallback: show client-side data
+        showSuccess({ reference: reference, amount: amount, email: email, paid_at: paidAt });
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -14,5 +14,6 @@ hugo_stats.json
 .DS_Store
 Thumbs.db
 
-# Local Netlify folder
-.netlify
+# Environment variables (contains secret keys)
+.env
+

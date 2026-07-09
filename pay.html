@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#722F37">
+  <title>Checkout — Tzniut</title>
+  <meta name="description" content="Complete your payment securely with Paystack.">
+
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <script>document.documentElement.classList.replace('no-js','js-enabled');</script>
+  <noscript>
+    <style>
+      .reveal, .reveal-left, .reveal-right, .reveal-scale { opacity: 1 !important; transform: none !important; }
+    </style>
+  </noscript>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/main.css?v=20260215">
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+  <style>
+    .pay-section { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding-top: var(--nav-height); }
+    .pay-card {
+      background: var(--charcoal);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-2xl);
+      max-width: 480px;
+      width: 100%;
+    }
+    .pay-card__title {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      margin-bottom: var(--space-sm);
+      text-align: center;
+    }
+    .pay-card__sub {
+      text-align: center;
+      color: var(--ivory-dim);
+      font-size: 0.9rem;
+      margin-bottom: var(--space-xl);
+    }
+    .pay-field { margin-bottom: var(--space-lg); }
+    .pay-field label {
+      display: block;
+      font-family: var(--font-accent);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-bottom: var(--space-sm);
+    }
+    .pay-field input {
+      width: 100%;
+      padding: 14px 16px;
+      background: var(--graphite);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-sm);
+      color: var(--ivory);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      transition: border-color var(--transition-fast);
+    }
+    .pay-field input:focus {
+      outline: none;
+      border-color: var(--wine);
+    }
+    .pay-field input::placeholder { color: var(--slate); }
+    .pay-field .pay-note {
+      font-size: 0.8rem;
+      color: var(--slate);
+      margin-top: var(--space-xs);
+    }
+    .pay-card .btn { width: 100%; margin-top: var(--space-md); }
+    .pay-error {
+      background: rgba(255, 0, 0, 0.1);
+      border: 1px solid rgba(255, 0, 0, 0.3);
+      color: #ff6b6b;
+      padding: var(--space-md);
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      margin-top: var(--space-md);
+      display: none;
+    }
+    .pay-error.visible { display: block; }
+    .pay-loading {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+      color: var(--ivory-dim);
+      font-size: 0.9rem;
+    }
+    .pay-loading.visible { display: flex; }
+    .spinner {
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--glass-border);
+      border-top-color: var(--champagne);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .pay-summary {
+      background: var(--graphite);
+      border-radius: var(--radius-sm);
+      padding: var(--space-md);
+      margin-bottom: var(--space-lg);
+      font-size: 0.9rem;
+    }
+    .pay-summary-row {
+      display: flex;
+      justify-content: space-between;
+      padding: var(--space-xs) 0;
+    }
+    .pay-summary-row.total {
+      border-top: 1px solid var(--glass-border);
+      margin-top: var(--space-sm);
+      padding-top: var(--space-md);
+      font-weight: 600;
+      color: var(--champagne);
+    }
+    .pay-secure {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--slate);
+      margin-top: var(--space-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-xs);
+    }
+    .pay-secure svg { width: 14px; height: 14px; }
+    @media (max-width: 520px) {
+      .pay-card { padding: var(--space-lg); }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav" id="main-nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="Tzniut Home">
+        <img src="images/logo.png" alt="Tzniut" class="nav__logo-img">
+      </a>
+      <div class="nav__links" role="menubar">
+        <a href="collections/index.html" class="nav__link" role="menuitem">Collections</a>
+        <a href="blog/index.html" class="nav__link" role="menuitem">Blog</a>
+        <a href="about.html" class="nav__link" role="menuitem">About</a>
+        <a href="contact.html" class="nav__link" role="menuitem">Contact</a>
+      </div>
+      <button class="nav__hamburger" id="nav-hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav__mobile-overlay" id="nav-mobile-overlay">
+      <a href="collections/index.html" class="nav__link" role="menuitem">Collections</a>
+      <a href="blog/index.html" class="nav__link" role="menuitem">Blog</a>
+      <a href="about.html" class="nav__link" role="menuitem">About</a>
+      <a href="contact.html" class="nav__link" role="menuitem">Contact</a>
+    </div>
+  </nav>
+
+  <main id="main-content">
+    <section class="pay-section">
+      <div class="container container--narrow">
+        <div class="pay-card reveal">
+          <h1 class="pay-card__title">Checkout</h1>
+          <p class="pay-card__sub">Complete your payment securely</p>
+
+          <div id="pay-no-amount" style="display:none; text-align:center; padding:var(--space-xl) 0;">
+            <p style="margin-bottom:var(--space-lg);">No product selected. Please choose an item to purchase.</p>
+            <a href="collections/index.html" class="btn btn--primary">Browse Collections</a>
+          </div>
+
+          <form id="pay-form" novalidate>
+            <div class="pay-field">
+              <label for="pay-email">Email Address</label>
+              <input type="email" id="pay-email" placeholder="you@example.com" required autocomplete="email">
+              <div class="pay-note">Your receipt will be sent here</div>
+            </div>
+
+            <div class="pay-field">
+              <label for="pay-whatsapp">WhatsApp Number</label>
+              <input type="tel" id="pay-whatsapp" placeholder="+234 800 000 0000" required>
+              <div class="pay-note">We'll reach you here about your order</div>
+            </div>
+
+            <div class="pay-field">
+              <label for="pay-description">Order</label>
+              <input type="text" id="pay-description" placeholder="Product name">
+            </div>
+
+            <div class="pay-summary" id="pay-summary">
+              <div class="pay-summary-row">
+                <span id="summary-item">Item</span>
+                <span id="summary-amount">—</span>
+              </div>
+              <div class="pay-summary-row total">
+                <span>Total</span>
+                <span id="summary-total">—</span>
+              </div>
+            </div>
+
+            <div class="pay-error" id="pay-error"></div>
+
+            <div class="pay-loading" id="pay-loading">
+              <div class="spinner"></div>
+              <span>Processing your payment...</span>
+            </div>
+
+            <button type="submit" class="btn btn--primary" id="pay-submit">
+              <span id="pay-submit-text">Pay Now</span>
+            </button>
+          </form>
+
+          <div class="pay-secure">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+            Secured by Paystack
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container container--wide">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand-name text-gradient">Tzniut</div>
+          <div class="footer__brand-tagline">Take the Spotlight</div>
+          <p class="footer__desc">Where modesty meets magnificence. Elegant, conservative fashion designed for the modern woman.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+            <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385h-3.047v-3.47h3.047v-2.642c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953h-1.514c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385c5.737-.9 10.126-5.864 10.126-11.854z"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__heading">Explore</h4>
+          <a href="collections/index.html" class="footer__link">Collections</a>
+          <a href="blog/index.html" class="footer__link">Blog</a>
+          <a href="about.html" class="footer__link">About</a>
+          <a href="contact.html" class="footer__link">Contact</a>
+        </div>
+        <div>
+          <h4 class="footer__heading">Connect</h4>
+          <a href="https://wa.link/qjvggk" class="footer__link" target="_blank">WhatsApp</a>
+          <div style="margin-top: var(--space-lg);">
+            <img src="images/tzniut-qr.png" alt="Scan to chat on WhatsApp" class="footer__qr">
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__heading">Stay in Touch</h4>
+          <form name="newsletter" method="POST" class="footer__newsletter">
+            <div class="footer__newsletter-form">
+              <input type="email" name="email" placeholder="Your email address" required>
+              <button type="submit">Join</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2026 Tzniut. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="whatsapp-float">
+    <a href="https://wa.link/qjvggk" class="whatsapp-float__btn" target="_blank" aria-label="Chat on WhatsApp">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+    <span class="whatsapp-float__tooltip">Chat with us</span>
+  </div>
+
+  <script src="js/main.js" defer></script>
+  <script>
+    (function() {
+      var PAYSTACK_KEY = 'pk_test_cc1281997da0f7fcd76858589eef6df4be235ff1';
+      var VERIFY_URL = '/.netlify/functions/verify-payment';
+      var LS_KEY = 'tzniut_contact';
+
+      var form = document.getElementById('pay-form');
+      var noAmount = document.getElementById('pay-no-amount');
+      var emailInput = document.getElementById('pay-email');
+      var waInput = document.getElementById('pay-whatsapp');
+      var descInput = document.getElementById('pay-description');
+      var summary = document.getElementById('pay-summary');
+      var summaryItem = document.getElementById('summary-item');
+      var summaryAmount = document.getElementById('summary-amount');
+      var summaryTotal = document.getElementById('summary-total');
+      var errorEl = document.getElementById('pay-error');
+      var loadingEl = document.getElementById('pay-loading');
+      var submitBtn = document.getElementById('pay-submit');
+      var submitText = document.getElementById('pay-submit-text');
+
+      var params = new URLSearchParams(window.location.search);
+      var amount = parseInt(params.get('amount'), 10) || 0;
+      var description = params.get('description') || '';
+      var saved = localStorage.getItem(LS_KEY);
+
+      if (saved) waInput.value = saved;
+      if (description) descInput.value = decodeURIComponent(description);
+
+      if (!amount || amount < 100) {
+        form.style.display = 'none';
+        noAmount.style.display = 'block';
+      } else {
+        var formatted = '₦' + amount.toLocaleString();
+        summaryItem.textContent = description || 'Order';
+        summaryAmount.textContent = formatted;
+        summaryTotal.textContent = formatted;
+      }
+
+      function showError(msg) {
+        errorEl.textContent = msg;
+        errorEl.classList.add('visible');
+      }
+
+      function hideError() {
+        errorEl.classList.remove('visible');
+        errorEl.textContent = '';
+      }
+
+      function setLoading(loading) {
+        loadingEl.classList.toggle('visible', loading);
+        submitBtn.disabled = loading;
+        submitText.textContent = loading ? 'Please wait...' : 'Pay Now';
+      }
+
+      function verifyTransaction(reference) {
+        return fetch(VERIFY_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ reference: reference })
+        }).then(function(r) { return r.json(); });
+      }
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        hideError();
+
+        var email = emailInput.value.trim();
+        var whatsapp = waInput.value.trim();
+        var desc = descInput.value.trim() || 'Tzniut Order';
+
+        if (!email) { showError('Please enter your email address'); return; }
+        if (!whatsapp) { showError('Please enter your WhatsApp number'); return; }
+
+        localStorage.setItem(LS_KEY, whatsapp);
+        setLoading(true);
+
+        var handler = PaystackPop.setup({
+          key: PAYSTACK_KEY,
+          email: email,
+          amount: amount * 100,
+          currency: 'NGN',
+          ref: 'TZN-' + Date.now() + '-' + Math.floor(Math.random() * 100000),
+          metadata: {
+            whatsapp: whatsapp,
+            custom_fields: [
+              { display_name: 'Order', variable_name: 'order', value: desc },
+              { display_name: 'WhatsApp', variable_name: 'whatsapp', value: whatsapp }
+            ]
+          },
+          callback: function(response) {
+            verifyTransaction(response.reference).then(function(result) {
+              if (result.verified) {
+                var url = 'confirmation.html'
+                  + '?reference=' + encodeURIComponent(result.reference)
+                  + '&email=' + encodeURIComponent(result.email)
+                  + '&amount=' + encodeURIComponent(result.amount)
+                  + '&paid_at=' + encodeURIComponent(result.paid_at)
+                  + '&whatsapp=' + encodeURIComponent(whatsapp);
+                window.location.href = url;
+              } else {
+                setLoading(false);
+                showError('Payment verification failed. Please contact us with reference: ' + response.reference);
+              }
+            }).catch(function() {
+              var url = 'confirmation.html'
+                + '?reference=' + encodeURIComponent(response.reference)
+                + '&email=' + encodeURIComponent(email)
+                + '&amount=' + encodeURIComponent(amount)
+                + '&whatsapp=' + encodeURIComponent(whatsapp)
+                + '&unverified=1';
+              window.location.href = url;
+            });
+          },
+          onClose: function() {
+            setLoading(false);
+            showError('Payment was cancelled. You can try again anytime.');
+          }
+        });
+        handler.openIframe();
+      });
+    })();
+  </script>
+</body>
+</html>

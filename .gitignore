@@ -17,3 +17,6 @@ Thumbs.db
 # Environment variables (contains secret keys)
 .env
 
+
+# Local Netlify folder
+.netlify

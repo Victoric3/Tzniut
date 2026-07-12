@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initLazyImageReveal();
   initMagneticButtons();
   initSmoothCounters();
+  initPayModal();
 });
 
 /* --- Scroll Reveal (Intersection Observer) --- */
@@ -327,3 +328,77 @@ document.querySelectorAll('.cursor-glow').forEach(el => {
     el.style.setProperty('--glow-y', `${e.clientY - rect.top}px`);
   });
 });
+
+/* --- Pay Modal (replace prompt) --- */
+function initPayModal() {
+  var modal = document.getElementById('pay-modal');
+  if (!modal) return;
+
+  var backdrop = modal.querySelector('.pay-modal__backdrop');
+  var cancelBtn = modal.querySelector('.pay-modal__cancel');
+  var form = modal.querySelector('.pay-modal__form');
+  var emailInput = modal.querySelector('.pay-modal__input');
+  var errorEl = modal.querySelector('.pay-modal__error');
+  var submitBtn = modal.querySelector('.pay-modal__submit');
+  var productNameEl = modal.querySelector('.pay-modal__product-name');
+  var productPriceEl = modal.querySelector('.pay-modal__product-price');
+
+  var pendingPayment = null;
+
+  window.openPayModal = function(name, amount) {
+    pendingPayment = { name: name, amount: amount };
+    productNameEl.textContent = name;
+    productPriceEl.textContent = '\u20A6' + Number(amount).toLocaleString();
+    emailInput.value = '';
+    errorEl.textContent = '';
+    emailInput.focus();
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+
+  function closePayModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+    pendingPayment = null;
+  }
+
+  backdrop.addEventListener('click', closePayModal);
+  cancelBtn.addEventListener('click', closePayModal);
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modal.classList.contains('open')) {
+      closePayModal();
+    }
+  });
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var email = emailInput.value.trim();
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      errorEl.textContent = 'Please enter a valid email address';
+      return;
+    }
+    errorEl.textContent = '';
+    if (pendingPayment) {
+      var ref = 'TZN-' + Date.now().toString(36) + '-' + Math.random().toString(36).substring(2, 10) + '-' + Math.random().toString(10).substring(2, 6);
+      var key = window.PAYSTACK_KEY || 'pk_test_cc1281997da0f7fcd76858589eef6df4be235ff1';
+      var handler = PaystackPop.setup({
+        key: key,
+        email: email,
+        amount: pendingPayment.amount * 100,
+        currency: 'NGN',
+        ref: ref,
+        metadata: {
+          custom_fields: [
+            { display_name: 'Order', variable_name: 'order', value: pendingPayment.name }
+          ]
+        },
+        callback: function(response) {
+          window.location.href = 'confirmation.html?reference=' + response.reference;
+        }
+      });
+      closePayModal();
+      handler.openIframe();
+    }
+  });
+}

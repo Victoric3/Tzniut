@@ -102,7 +102,7 @@
                 </span>
                 <span class="action-btn__label">WhatsApp</span>
               </a>
-              <button class="pay-btn" onclick="payWithPaystack('The Navy Pinstripe Suit', 185000)">
+              <button class="pay-btn" onclick="openPayModal('The Navy Pinstripe Suit', 185000)">
                 <span class="pay-btn__label">Pay Now</span>
                 <span class="pay-btn__price">₦185,000</span>
               </button>
@@ -217,27 +217,33 @@
 
   <script>
     var PAYSTACK_KEY = 'pk_test_cc1281997da0f7fcd76858589eef6df4be235ff1';
-    function payWithPaystack(name, amount) {
-      var email = prompt('Enter your email address to proceed with payment:');
-      if (!email) return;
-      var handler = PaystackPop.setup({
-        key: PAYSTACK_KEY,
-        email: email,
-        amount: amount * 100,
-        currency: 'NGN',
-        ref: 'TZN-' + Date.now() + '-' + Math.floor(Math.random() * 100000),
-        metadata: {
-          custom_fields: [
-            { display_name: 'Order', variable_name: 'order', value: name }
-          ]
-        },
-        callback: function(response) {
-          window.location.href = 'confirmation.html?reference=' + response.reference;
-        }
-      });
-      handler.openIframe();
-    }
   </script>
   <script src="../js/main.js" defer></script>
+
+  <!-- Pay Modal -->
+  <div class="pay-modal" id="pay-modal" role="dialog" aria-hidden="true">
+    <div class="pay-modal__backdrop"></div>
+    <div class="pay-modal__card">
+      <div class="pay-modal__brand">
+        <div class="pay-modal__brand-name">Tzniut</div>
+        <div class="pay-modal__brand-divider"></div>
+      </div>
+      <div class="pay-modal__product">
+        <div class="pay-modal__product-name"></div>
+        <div class="pay-modal__product-price"></div>
+      </div>
+      <form class="pay-modal__form">
+        <div class="pay-modal__input-group">
+          <input type="email" class="pay-modal__input" id="pay-email" placeholder="you@example.com" autocomplete="email" required>
+          <label class="pay-modal__input-label" for="pay-email">Email Address</label>
+        </div>
+        <div class="pay-modal__error"></div>
+        <div class="pay-modal__actions">
+          <button type="submit" class="pay-modal__submit">Proceed to Pay</button>
+          <button type="button" class="pay-modal__cancel">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </body>
 </html>

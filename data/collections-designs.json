@@ -1,0 +1,404 @@
+{
+  "collections": [
+    {
+      "id": "linen-ease-set",
+      "name": "The Linen Ease Set",
+      "category": "everyday-elegance",
+      "category_label": "Everyday Elegance",
+      "short_description": "Effortlessly relaxed white linen drawstring trousers paired with a cobalt blue V-neck tee. The perfect minimal set for a man who moves with ease.",
+      "description": [
+        "The Linen Ease Set is built around a pair of wide-leg white linen drawstring trousers — clean, breathable and quietly refined. The waistband features an elasticated back and a double drawstring closure with dual zip pockets at the thigh, giving the trousers a utilitarian edge within a decidedly relaxed silhouette.",
+        "Worn here with a cobalt blue V-neck short-sleeve tee, the combination reads effortless. The tee's deep blue grounds the ivory of the linen, producing a contrast that is bold without being loud. This set is built for the man who dresses with intention but values comfort as much as appearance."
+      ],
+      "attributes": {
+        "Fabrics": "Linen (trousers), Cotton jersey (tee)",
+        "Colors": "White / Ivory, Cobalt Blue",
+        "Silhouette": "Wide-leg, relaxed",
+        "Occasion": "Casual, Daywear, Vacation",
+        "Fit": "Relaxed"
+      },
+      "images": {
+        "primary": "images/designs/linen-ease-set/Mannequin_wearing_blue_t-shirt_b…_202607120609.jpeg",
+        "gallery": [
+          {
+            "path": "images/designs/linen-ease-set/Mannequin_wearing_blue_t-shirt_b…_202607120609.jpeg",
+            "role": "mannequin_full",
+            "alt": "The Linen Ease Set — full outfit on mannequin, cobalt blue tee and white linen drawstring trousers"
+          },
+          {
+            "path": "images/designs/linen-ease-set/Cloth_as_full_single_entity_202607120557.jpeg",
+            "role": "mannequin_pants_closeup",
+            "alt": "The Linen Ease Set — white linen drawstring trousers on mannequin, front close-up view"
+          },
+          {
+            "path": "images/designs/linen-ease-set/Cloth_as_full_single_entity_202607120603.jpeg",
+            "role": "mannequin_pants",
+            "alt": "The Linen Ease Set — white linen drawstring trousers on mannequin"
+          },
+          {
+            "path": "images/designs/linen-ease-set/Cloth_as_full_single_entity_202607120603 (1).jpeg",
+            "role": "flat_lay_pants",
+            "alt": "The Linen Ease Set — white linen drawstring trousers flat lay"
+          }
+        ]
+      }
+    },
+    {
+      "id": "midnight-overcoat",
+      "name": "The Midnight Overcoat",
+      "category": "statement-luxury",
+      "category_label": "Statement Luxury",
+      "short_description": "A commanding black wool long overcoat concealing a sweeping blue paisley interior lining. Power on the outside. Drama within.",
+      "description": [
+        "The Midnight Overcoat is a study in restrained drama. Cut in a long single-breasted silhouette from a structured black wool blend, the coat presents a clean, authoritative exterior — two-button closure, peak lapels, twin flap pockets and a polished notch at the chest. Nothing is unnecessary.",
+        "Open it, and an entirely different story unfolds: a rich, full blue and grey paisley lining cascades down the interior — an intimate detail reserved for the wearer. Styled over a cream crew-neck knit and paired with warm brown wool trousers, this coat signals presence before a word is spoken."
+      ],
+      "attributes": {
+        "Fabrics": "Wool blend (outer), Paisley-print satin (lining)",
+        "Colors": "Black, Blue Paisley lining",
+        "Silhouette": "Long single-breasted overcoat",
+        "Occasion": "Evening, Formal, Winter",
+        "Fit": "Tailored"
+      },
+      "images": {
+        "primary": "images/designs/midnight-overcoat/Cloth_as_full_single_entity_202607120844.jpeg",
+        "gallery": [
+          {
+            "path": "images/designs/midnight-overcoat/Cloth_as_full_single_entity_202607120844.jpeg",
+            "role": "mannequin_full",
+            "alt": "The Midnight Overcoat — full mannequin view, coat worn open over cream knit and brown trousers"
+          },
+          {
+            "path": "images/designs/midnight-overcoat/Cloth_as_full_single_entity_202607120833.jpeg",
+            "role": "flat_lay_open",
+            "alt": "The Midnight Overcoat — flat lay open, blue paisley lining fully visible"
+          }
+        ]
+      }
+    },
+    {
+      "id": "stone-glen-suit",
+      "name": "The Stone Glen Suit",
+      "category": "statement-luxury",
+      "category_label": "Statement Luxury",
+      "short_description": "A taupe Glen plaid double-breasted suit with dramatic boot-cut flare trousers. Impeccably structured. Confidently retro.",
+      "description": [
+        "The Stone Glen Suit is a masterpiece of pattern and proportion. Crafted from a warm stone-taupe Glen plaid wool blend, the double-breasted jacket features wide peak lapels, a breast pocket square, twin flap pockets, and four-button cuffs — every detail deliberate and precise. The result is a silhouette that commands a room without demanding attention.",
+        "The suit's defining statement is its boot-cut flare trousers, which echo the plaid from waistband to hem in perfect harmony. This is not a suit that whispers — it is architectural menswear that nods to 1970s power dressing while remaining entirely contemporary in its execution."
+      ],
+      "attributes": {
+        "Fabrics": "Glen plaid wool blend",
+        "Colors": "Stone Taupe, Warm Brown overcheck",
+        "Silhouette": "Double-breasted jacket, flare/boot-cut trousers",
+        "Occasion": "Formal, Events, Statement Occasions",
+        "Fit": "Structured, tailored through the body"
+      },
+      "images": {
+        "primary": "images/designs/stone-glen-suit/Male_mannequin_wearing_jacket_pants_202607120817.jpeg",
+        "gallery": [
+          {
+            "path": "images/designs/stone-glen-suit/Male_mannequin_wearing_jacket_pants_202607120817.jpeg",
+            "role": "mannequin_full",
+            "alt": "The Stone Glen Suit — full mannequin, double-breasted jacket with matching flare trousers"
+          },
+          {
+            "path": "images/designs/stone-glen-suit/Change_boot_cut_doors_straight_202607120830.jpeg",
+            "role": "mannequin_full_alt",
+            "alt": "The Stone Glen Suit — full mannequin alternate view showing complete ensemble"
+          },
+          {
+            "path": "images/designs/stone-glen-suit/Jacket_emphasized_on_mannequin_2K_202607120815.jpeg",
+            "role": "jacket_detail",
+            "alt": "The Stone Glen Suit — jacket close-up on mannequin, lapels and pocket detail"
+          },
+          {
+            "path": "images/designs/stone-glen-suit/Mannequin_showing_pants_and_clothes_202607120813.jpeg",
+            "role": "trousers_detail",
+            "alt": "The Stone Glen Suit — flare trousers close-up on mannequin, showing boot-cut hem"
+          }
+        ]
+      }
+    },
+    {
+      "id": "powder-blue-brocade-suit",
+      "name": "The Powder Blue Brocade Suit",
+      "category": "evening-soiree",
+      "category_label": "Evening Soirée",
+      "short_description": "A baby blue double-breasted suit woven in textured jacquard brocade with black piping. Quiet extravagance for the moments that matter.",
+      "description": [
+        "The Powder Blue Brocade Suit is constructed from a premium jacquard brocade in powder blue — a fabric whose surface tells its own story through raised abstract texture that shifts with the light. The double-breasted jacket is cut with a sharp peak lapel, accented by fine black piping along the lapel edge, and finished with covered brocade buttons that disappear into the fabric.",
+        "The matching slim-cut trousers carry the same jacquard weave from hip to ankle, creating a seamless, head-to-toe statement. Paired with a white dress shirt and a tone-on-tone blue tie, this suit transforms any evening occasion into a personal gallery of craftsmanship."
+      ],
+      "attributes": {
+        "Fabrics": "Jacquard brocade",
+        "Colors": "Powder Blue, Black piping",
+        "Silhouette": "Double-breasted jacket, slim trousers",
+        "Occasion": "Evening events, Gala, Weddings",
+        "Fit": "Tailored, structured"
+      },
+      "images": {
+        "primary": "images/designs/powder-blue-brocade-suit/Clothes_on_mannequin_display_202607120851.jpeg",
+        "gallery": [
+          {
+            "path": "images/designs/powder-blue-brocade-suit/Clothes_on_mannequin_display_202607120851.jpeg",
+            "role": "mannequin_full",
+            "alt": "The Powder Blue Brocade Suit — full mannequin, complete suit with white shirt and blue tie"
+          },
+          {
+            "path": "images/designs/powder-blue-brocade-suit/Cloth_with_buttons_and_arm_202607120852.jpeg",
+            "role": "jacket_detail",
+            "alt": "The Powder Blue Brocade Suit — jacket close-up showing brocade texture and black piping lapels"
+          },
+          {
+            "path": "images/designs/powder-blue-brocade-suit/Cloth_as_full_single_entity_202607120852.jpeg",
+            "role": "flat_lay_trousers",
+            "alt": "The Powder Blue Brocade Suit — trousers flat lay showing jacquard brocade detail"
+          }
+        ]
+      }
+    },
+    {
+      "id": "terracotta-pinstripe-ensemble",
+      "name": "The Terracotta Pinstripe Ensemble",
+      "category": "professional-chic",
+      "category_label": "Professional Chic",
+      "short_description": "A rust-terracotta pinstripe sleeveless belted vest worn over a white dress shirt with matching cuffed trousers. Structured, bold, and entirely intentional.",
+      "description": [
+        "The Terracotta Pinstripe Ensemble centres around a sleeveless double-lapel vest in a rich rust-terracotta tone running with fine ivory pinstripes. The vest fastens at the waist with a silver rectangular buckle belt, and features oversized pleated patch pockets at the hips — a design that reads both utilitarian and luxurious simultaneously.",
+        "The vest is designed to be worn over a crisp white dress shirt, with the matching cuffed pinstripe trousers completing the set below. The terracotta colourway is warm and distinctly warm-season, while the precision of the pinstripe and structured cut ensure this ensemble reads as sharp as any formal suit."
+      ],
+      "attributes": {
+        "Fabrics": "Pinstripe suiting fabric (polyester-wool blend)",
+        "Colors": "Rust Terracotta, Ivory pinstripe",
+        "Silhouette": "Sleeveless belted vest, straight-leg cuffed trousers",
+        "Occasion": "Professional, Smart Casual, Events",
+        "Fit": "Tailored through vest, straight-leg trousers"
+      },
+      "images": {
+        "primary": "images/designs/terracotta-pinstripe-ensemble/Mannequin_styling_cloth_display_202607120900.jpeg",
+        "gallery": [
+          {
+            "path": "images/designs/terracotta-pinstripe-ensemble/Mannequin_styling_cloth_display_202607120900.jpeg",
+            "role": "mannequin_full",
+            "alt": "The Terracotta Pinstripe Ensemble — full mannequin, vest over white shirt with matching trousers"
+          },
+          {
+            "path": "images/designs/terracotta-pinstripe-ensemble/Cloth_details_from_environment_2K_202607120857.jpeg",
+            "role": "flat_lay_vest",
+            "alt": "The Terracotta Pinstripe Ensemble — sleeveless belted vest flat lay, pockets and belt buckle visible"
+          },
+          {
+            "path": "images/designs/terracotta-pinstripe-ensemble/Cloth_as_full_single_entity_202607120857.jpeg",
+            "role": "flat_lay_trousers",
+            "alt": "The Terracotta Pinstripe Ensemble — matching pinstripe trousers flat lay on wooden table"
+          },
+          {
+            "path": "images/designs/terracotta-pinstripe-ensemble/Cloth_as_full_single_entity_202607120857 (1).jpeg",
+            "role": "flat_lay_trousers_open",
+            "alt": "The Terracotta Pinstripe Ensemble — trousers flat lay open, waistband and interior construction visible"
+          }
+        ]
+      }
+    },
+    {
+      "id": "gingham-statement-blazer",
+      "name": "The Gingham Statement Blazer",
+      "category": "everyday-elegance",
+      "category_label": "Everyday Elegance",
+      "short_description": "A bold black and white gingham check single-button blazer. Pattern-forward, sharp, and styled to be noticed.",
+      "description": [
+        "The Gingham Statement Blazer makes its argument the moment it enters a room. Cut from a high-contrast black and white medium-scale gingham check, the single-button notch lapel blazer is slim and deliberate — patch pockets at the hips, a breast welt pocket, and a clean dark lining that grounds the loud exterior.",
+        "It is shown here styled over a black fitted tee and black wide-leg flare trousers, letting the blazer carry the full visual weight of the look. The contrast between the bold check and the all-black base creates a statement that is cool without trying too hard. This blazer is the piece a man reaches for when he wants the room to know he has taste."
+      ],
+      "attributes": {
+        "Fabrics": "Gingham check woven cotton blend",
+        "Colors": "Black, White",
+        "Silhouette": "Single-button slim blazer",
+        "Occasion": "Smart casual, Evenings out, Events",
+        "Fit": "Slim, structured shoulders"
+      },
+      "images": {
+        "primary": "images/designs/gingham-statement-blazer/Mannequin_wearing_black_top_pants_202607120914.jpeg",
+        "gallery": [
+          {
+            "path": "images/designs/gingham-statement-blazer/Mannequin_wearing_black_top_pants_202607120914.jpeg",
+            "role": "mannequin_full",
+            "alt": "The Gingham Statement Blazer — full mannequin, blazer over black tee and black flare trousers"
+          },
+          {
+            "path": "images/designs/gingham-statement-blazer/Cloth_as_full_single_entity_202607120908.jpeg",
+            "role": "flat_lay",
+            "alt": "The Gingham Statement Blazer — flat lay on concrete surface, lining visible"
+          },
+          {
+            "path": "images/designs/gingham-statement-blazer/Cloth_as_full_single_entity_202607120908 (1).jpeg",
+            "role": "hanger",
+            "alt": "The Gingham Statement Blazer — hanging on rail, full front view"
+          }
+        ]
+      }
+    },
+    {
+      "id": "navy-pinstripe-suit",
+      "name": "The Navy Pinstripe Suit",
+      "category": "professional-chic",
+      "category_label": "Professional Chic",
+      "short_description": "A classic navy chalk-stripe single-breasted suit with a silver satin lining and three-button flap pockets. Authority, tailored.",
+      "description": [
+        "The Navy Pinstripe Suit is a cornerstone of serious menswear. Built from a deep navy blue suiting fabric carrying fine chalk-white pinstripes, the single-breasted jacket is structured and confident — a peak lapel, three large flap-and-button pockets, and a silver satin lining bearing a branded repeat print within. It is a suit that does not need to announce itself.",
+        "The matching straight-leg trousers carry the same pinstripe from waistband to cuffed hem, maintaining the vertical discipline of the design throughout. Shown paired with a white dress shirt and a deep burgundy tie, this suit belongs in boardrooms, at ceremonies, and at every occasion where presence matters."
+      ],
+      "attributes": {
+        "Fabrics": "Pinstripe suiting wool blend, silver satin lining",
+        "Colors": "Navy Blue, White chalk pinstripe, Silver lining",
+        "Silhouette": "Single-breasted peak lapel jacket, straight-leg trousers",
+        "Occasion": "Business formal, Ceremonies, Interviews",
+        "Fit": "Classic tailored, full cut"
+      },
+      "images": {
+        "primary": "images/designs/navy-pinstripe-suit/Dresses_on_mannequin_with_shirt_202607120912.jpeg",
+        "gallery": [
+          {
+            "path": "images/designs/navy-pinstripe-suit/Dresses_on_mannequin_with_shirt_202607120912.jpeg",
+            "role": "mannequin_full",
+            "alt": "The Navy Pinstripe Suit — full mannequin, complete suit with white shirt and burgundy tie"
+          },
+          {
+            "path": "images/designs/navy-pinstripe-suit/Cloth_with_detailed_buttons_stru._202607120909.jpeg",
+            "role": "flat_lay_jacket",
+            "alt": "The Navy Pinstripe Suit — jacket flat lay, silver satin lining and button pockets visible"
+          },
+          {
+            "path": "images/designs/navy-pinstripe-suit/Cloth_as_full_single_entity_202607120910.jpeg",
+            "role": "flat_lay_trousers",
+            "alt": "The Navy Pinstripe Suit — trousers flat lay open, waistband and interior detail visible"
+          }
+        ]
+      }
+    },
+    {
+      "id": "abstract-bloom-blazer",
+      "name": "The Abstract Bloom Blazer",
+      "category": "statement-luxury",
+      "category_label": "Statement Luxury",
+      "short_description": "A single-breasted blazer erupting in multicolour abstract floral and firework print across a dark navy base. Wearable art.",
+      "description": [
+        "The Abstract Bloom Blazer is not a background piece — it is the centrepiece of any room it enters. The dark navy base is consumed by an explosive hand-painted-style print: bursting fireworks, layered concentric circles, sweeping curves in crimson, sky blue, burnt orange, cream, and gold. No two panels of the fabric read the same.",
+        "Cut in a single-button, notch-lapel silhouette with twin flap pockets, the blazer is paired here with a black crew-neck tee and clean cream trousers — letting the print carry the full energy of the look. This is the piece for a man who understands that clothing can be art, and who is not afraid to wear it."
+      ],
+      "attributes": {
+        "Fabrics": "Polyester-satin print fabric",
+        "Colors": "Navy, Red, Orange, Sky Blue, Gold, Cream",
+        "Silhouette": "Single-button blazer, standard lapel",
+        "Occasion": "Evening out, Events, Art openings, Celebrations",
+        "Fit": "Regular, relaxed shoulders"
+      },
+      "images": {
+        "primary": "images/designs/abstract-bloom-blazer/Cloth_on_mannequin_for_display_202607120920.jpeg",
+        "gallery": [
+          {
+            "path": "images/designs/abstract-bloom-blazer/Cloth_on_mannequin_for_display_202607120920.jpeg",
+            "role": "mannequin_full",
+            "alt": "The Abstract Bloom Blazer — full mannequin, blazer over black tee and cream trousers"
+          },
+          {
+            "path": "images/designs/abstract-bloom-blazer/Cloth_as_full_single_entity_202607120918.jpeg",
+            "role": "flat_lay",
+            "alt": "The Abstract Bloom Blazer — flat lay showing full multicolour abstract print"
+          }
+        ]
+      }
+    },
+    {
+      "id": "teal-tribe-set",
+      "name": "The Teal Tribe Set",
+      "category": "statement-luxury",
+      "category_label": "Statement Luxury",
+      "short_description": "A teal and black African-inspired print short-sleeve shirt, paired with black crystal-embellished wide-leg drawstring trousers. Cultural energy. Contemporary edge.",
+      "description": [
+        "The Teal Tribe Set opens with one of the most visually striking pieces in the collection: a short-sleeve shirt built from a dual-zone African-inspired print. The upper half carries bold cracked-mosaic geometric shapes in vivid teal on a black ground; the lower half transitions to a field of teal concentric rings and tribal arrow motifs. The collar is finished with a black and white micro-check inner lining — a quiet detail that rewards a close look.",
+        "Below, a pair of wide-leg black drawstring trousers in a heavyweight jersey fabric are scattered with tiny crystal embellishments that catch the light as the wearer moves — subtle sparkle against a matte ground. Together, the shirt and trousers form a complete look: high energy, culturally rooted, and polished enough for any occasion from a dinner to a cultural event."
+      ],
+      "attributes": {
+        "Fabrics": "Cotton-poplin print (shirt), Crystal-embellished heavy jersey (trousers)",
+        "Colors": "Teal, Black, White (collar lining)",
+        "Silhouette": "Short-sleeve regular-fit shirt, wide-leg drawstring trousers",
+        "Occasion": "Casual, Evening, Cultural events, Celebrations",
+        "Fit": "Regular fit shirt, relaxed wide-leg trousers"
+      },
+      "images": {
+        "primary": "images/designs/teal-tribe-set/Clothes_on_mannequin_2K_202607120921.jpeg",
+        "gallery": [
+          {
+            "path": "images/designs/teal-tribe-set/Clothes_on_mannequin_2K_202607120921.jpeg",
+            "role": "mannequin_full",
+            "alt": "The Teal Tribe Set — full mannequin, teal African print shirt with black crystal drawstring trousers, white background"
+          },
+          {
+            "path": "images/designs/teal-tribe-set/Clothes_on_mannequin_2K_202607120922.jpeg",
+            "role": "mannequin_full_alt",
+            "alt": "The Teal Tribe Set — full mannequin alternate view, linen backdrop"
+          },
+          {
+            "path": "images/designs/teal-tribe-set/Cloth_as_full_single_entity_202607120920 (1).jpeg",
+            "role": "flat_lay_shirt",
+            "alt": "The Teal Tribe Set — teal and black African print shirt flat lay, full pattern visible"
+          },
+          {
+            "path": "images/designs/teal-tribe-set/Cloth_as_full_single_entity_202607120920.jpeg",
+            "role": "flat_lay_trousers",
+            "alt": "The Teal Tribe Set — black crystal-embellished wide-leg drawstring trousers flat lay"
+          }
+        ]
+      }
+    },
+    {
+      "id": "highland-flannel-set",
+      "name": "The Highland Flannel Set",
+      "category": "everyday-elegance",
+      "category_label": "Everyday Elegance",
+      "short_description": "A rich burgundy, cream and grey plaid western flannel shirt with snap buttons and dual chest pockets, paired with clean cream linen trousers.",
+      "description": [
+        "The Highland Flannel Set is grounded in the kind of effortless, unhurried confidence that only comes from clothes that are simply well-made. The long-sleeve flannel shirt is built from a large-scale tartan plaid in burgundy, cream and warm grey — worn soft against the skin, with a western yoke at the chest, dual snap-fastened breast pockets, and mother-of-pearl snap buttons running the full placket.",
+        "It is paired with a pair of clean, slim-cut cream linen trousers — cuffed at the hem, fastened with a single button — that draw no attention to themselves but make everything above them look better. This is the set for a relaxed afternoon, a low-key event, or any occasion where looking good is effortless and intentional."
+      ],
+      "attributes": {
+        "Fabrics": "Brushed flannel (shirt), Linen (trousers)",
+        "Colors": "Burgundy / Cream / Grey plaid (shirt), Natural Cream (trousers)",
+        "Silhouette": "Western long-sleeve shirt, slim cuffed trousers",
+        "Occasion": "Casual, Smart casual, Daywear",
+        "Fit": "Regular fit shirt, slim straight trousers"
+      },
+      "images": {
+        "primary": "images/designs/highland-flannel-set/Mannequin_showing_clothes_2K_202607120924.jpeg",
+        "gallery": [
+          {
+            "path": "images/designs/highland-flannel-set/Mannequin_showing_clothes_2K_202607120924.jpeg",
+            "role": "mannequin_full",
+            "alt": "The Highland Flannel Set — full mannequin, plaid western shirt with cream linen trousers"
+          },
+          {
+            "path": "images/designs/highland-flannel-set/Mannequin_showing_clothes_2K_202607120924 (1).jpeg",
+            "role": "mannequin_upper",
+            "alt": "The Highland Flannel Set — upper body close-up on mannequin, shirt detail and pocket snaps"
+          },
+          {
+            "path": "images/designs/highland-flannel-set/Long-sleeve_cloth_with_pockets_2K_202607120922.jpeg",
+            "role": "flat_lay_shirt",
+            "alt": "The Highland Flannel Set — burgundy plaid western flannel shirt flat lay"
+          },
+          {
+            "path": "images/designs/highland-flannel-set/Cloth_as_full_single_entity_202607120922.jpeg",
+            "role": "flat_lay_trousers",
+            "alt": "The Highland Flannel Set — cream linen slim trousers flat lay"
+          },
+          {
+            "path": "images/designs/highland-flannel-set/Cloth_as_full_single_entity_202607121326.jpeg",
+            "role": "flat_lay_full_set",
+            "alt": "The Highland Flannel Set — full set flat lay, plaid flannel shirt and cream linen trousers"
+          }
+        ]
+      }
+    }
+  ]
+}

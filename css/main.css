@@ -2346,3 +2346,129 @@ main {
   text-overflow: ellipsis;
   max-width: 100%;
 }
+
+/* --- Product page action icons row --- */
+.product-single__actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  margin-top: var(--space-lg);
+  padding: var(--space-xl) 0 var(--space-lg);
+  border-top: 1px solid var(--glass-border);
+}
+
+.action-btn--whatsapp {
+  justify-self: start;
+}
+
+.action-btn--back {
+  justify-self: end;
+}
+
+.action-btn--whatsapp .action-btn__icon {
+  background: #25D366;
+  color: #fff;
+  box-shadow: 0 0 0 1px rgba(37, 211, 102, 0.3);
+}
+
+.action-btn--whatsapp:hover .action-btn__icon {
+  box-shadow: 0 0 0 1px #25D366, 0 4px 20px rgba(37, 211, 102, 0.3);
+  transform: translateY(-3px);
+}
+
+.action-btn--back .action-btn__icon {
+  background: var(--glass-bg);
+  color: var(--ivory-dim);
+  border: 1px solid var(--glass-border);
+}
+
+.action-btn--back:hover .action-btn__icon {
+  border-color: var(--ivory);
+  color: var(--ivory);
+  transform: translateY(-3px);
+}
+
+.pay-btn {
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  background: linear-gradient(135deg, var(--wine), var(--wine-deep));
+  border: 1px solid var(--wine-light);
+  color: var(--ivory);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md) var(--space-xl);
+  cursor: pointer;
+  font-family: inherit;
+  transition: all var(--transition-smooth);
+}
+
+.pay-btn:hover {
+  box-shadow: var(--shadow-wine);
+  transform: translateY(-2px);
+}
+
+.pay-btn__label {
+  font-size: 0.8rem;
+  font-family: var(--font-accent);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.pay-btn__price {
+  font-size: 1.5rem;
+  color: var(--champagne);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.action-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  text-decoration: none;
+  color: var(--ivory);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0;
+  transition: all var(--transition-smooth);
+}
+
+.action-btn__icon {
+  width: 54px;
+  height: 54px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-smooth);
+}
+
+.action-btn__icon svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+.action-btn__label {
+  font-size: 0.65rem;
+  font-family: var(--font-accent);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  transition: opacity var(--transition-smooth);
+  white-space: nowrap;
+}
+
+.action-btn:hover .action-btn__label {
+  opacity: 1;
+}
+
+

@@ -394,7 +394,7 @@ function initPayModal() {
           ]
         },
         callback: function(response) {
-          window.location.href = 'confirmation.html?reference=' + response.reference;
+          window.location.href = '/confirmation.html?reference=' + response.reference;
         }
       });
       closePayModal();

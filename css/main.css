@@ -2347,22 +2347,23 @@ main {
   max-width: 100%;
 }
 
-/* --- Product page action icons row --- */
+/* --- Product page action icons column --- */
 .product-single__actions {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  gap: var(--space-md);
   margin-top: var(--space-lg);
   padding: var(--space-xl) 0 var(--space-lg);
   border-top: 1px solid var(--glass-border);
 }
 
 .action-btn--whatsapp {
-  justify-self: start;
+  width: 100%;
 }
 
 .action-btn--back {
-  justify-self: end;
+  width: 100%;
 }
 
 .action-btn--whatsapp .action-btn__icon {
@@ -2371,9 +2372,10 @@ main {
   box-shadow: 0 0 0 1px rgba(37, 211, 102, 0.3);
 }
 
-.action-btn--whatsapp:hover .action-btn__icon {
-  box-shadow: 0 0 0 1px #25D366, 0 4px 20px rgba(37, 211, 102, 0.3);
-  transform: translateY(-3px);
+.action-btn--whatsapp:hover {
+  border-color: #25D366;
+  background: rgba(37, 211, 102, 0.1);
+  box-shadow: 0 4px 24px rgba(37, 211, 102, 0.2);
 }
 
 .action-btn--back .action-btn__icon {
@@ -2382,31 +2384,31 @@ main {
   border: 1px solid var(--glass-border);
 }
 
-.action-btn--back:hover .action-btn__icon {
+.action-btn--back:hover {
   border-color: var(--ivory);
-  color: var(--ivory);
-  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .pay-btn {
-  justify-self: center;
+  width: 100%;
+  max-width: 340px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
+  gap: 4px;
   background: linear-gradient(135deg, var(--wine), var(--wine-deep));
   border: 1px solid var(--wine-light);
   color: var(--ivory);
   border-radius: var(--radius-lg);
-  padding: var(--space-md) var(--space-xl);
+  padding: var(--space-lg) var(--space-xl);
   cursor: pointer;
   font-family: inherit;
   transition: all var(--transition-smooth);
 }
 
 .pay-btn:hover {
-  box-shadow: var(--shadow-wine);
-  transform: translateY(-2px);
+  box-shadow: var(--shadow-wine), 0 8px 32px rgba(114, 47, 55, 0.3);
+  transform: translateY(-3px);
 }
 
 .pay-btn__label {
@@ -2428,43 +2430,52 @@ main {
 
 .action-btn {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: var(--space-xs);
+  gap: var(--space-md);
   text-decoration: none;
   color: var(--ivory);
-  background: none;
-  border: none;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
   cursor: pointer;
   font-family: inherit;
-  padding: 0;
+  padding: var(--space-sm) var(--space-lg);
+  width: 100%;
+  max-width: 340px;
   transition: all var(--transition-smooth);
+  backdrop-filter: blur(4px);
+}
+
+.action-btn:hover {
+  border-color: var(--ivory-dim);
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
 }
 
 .action-btn__icon {
-  width: 54px;
-  height: 54px;
+  width: 44px;
+  height: 44px;
   border-radius: var(--radius-full);
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
   transition: all var(--transition-smooth);
 }
 
 .action-btn__icon svg {
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   display: block;
 }
 
 .action-btn__label {
-  font-size: 0.65rem;
+  font-size: 0.85rem;
   font-family: var(--font-accent);
-  letter-spacing: 0.12em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  opacity: 0.6;
+  font-weight: 600;
   transition: opacity var(--transition-smooth);
-  white-space: nowrap;
 }
 
 .action-btn:hover .action-btn__label {
